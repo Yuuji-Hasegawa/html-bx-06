@@ -6,20 +6,12 @@
   gap: setting.f-space-em(s);
   align-items: baseline;
 
-  &--center {
-    align-items: center;
+  &--gap-s {
+    gap: setting.f-space-px(s);
   }
 
-  &--header-logo,
-  &--footer-logo {
-    gap: setting.f-space-px(s);
-    color: currentcolor;
-    transition: all 0.25s ease;
-
-    &:hover,
-    &:focus {
-      color: var(--c-text-hover);
-    }
+  &--center {
+    align-items: center;
   }
 
   &--text-center {
@@ -58,22 +50,6 @@
 .o-icon {
   font-size: setting.f-font-emsize(2xs);
   line-height: setting.f-lineheight(none);
-
-  .o-icon-parent--header-logo & {
-    font-size: clamp(
-      map.get(setting.$fontRemSize, 3xl),
-      (setting.breakpoints(overm)),
-      map.get(setting.$fontRemSize, 4xl)
-    );
-  }
-
-  .o-icon-parent--footer-logo & {
-    font-size: clamp(
-      map.get(setting.$fontRemSize, xl),
-      (setting.breakpoints(overm)),
-      map.get(setting.$fontRemSize, 2xl)
-    );
-  }
 
   &--required {
     padding: setting.f-space-px(xs) setting.f-space-px(s);

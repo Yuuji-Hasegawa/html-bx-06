@@ -3,40 +3,64 @@
 @use "sass:map";
 
 .c-header {
-  position: relative;
   display: flex;
-  align-items: center;
-  padding-top: clamp(setting.f-space-px(s), (setting.breakpoints(overm)), setting.f-space-px(m));
+  padding-top: clamp(setting.f-space-px(s), (setting.breakpoints(overm)), setting.f-space-px(xl));
   padding-bottom: clamp(setting.f-space-px(s), (setting.breakpoints(overm)), setting.f-space-px(m));
+
+  &--menu {
+    position: sticky;
+    top: 0;
+    box-sizing: border-box;
+    width: 100%;
+  }
 }
 
 .c-logo-label {
-  &--header {
-    font-size: clamp(
-      map.get(setting.$fontRemSize, 2xl),
-      (setting.breakpoints(overm)),
-      map.get(setting.$fontRemSize, 3xl)
-    );
-  }
-
   &--footer {
     font-size: clamp(map.get(setting.$fontRemSize, l), (setting.breakpoints(overm)), map.get(setting.$fontRemSize, xl));
   }
 }
 
-.c-pc-nav {
-  margin-left: auto;
+.c-pc-nav,
+.c-nav-item,
+.c-menu-item {
+  flex-grow: 1;
+}
 
-  @include tool.max-screen(setting.$underm) {
-    display: none;
+.c-nav-item,
+.c-menu-item {
+  display: flex;
+}
+
+.c-nav-link,
+.c-menu-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover,
+  &:focus {
+    color: var(--c-text-on-fill);
+    background: var(--c-text-hover);
+  }
+
+  .c-nav-item:last-of-type & {
+    color: var(--c-text-on-fill);
+    background: var(--c-button-normal);
+
+    &:hover,
+    &:focus {
+      background: var(--c-text-hover);
+    }
   }
 }
 
 .c-menu-bars {
   position: relative;
   width: calc(100% - setting.f-space-px(m));
-  height: 1px;
-  background: var(--c-text-description);
+  height: setting.f-space-px(3xs);
+  background: currentcolor;
+  border-radius: setting.f-border-radius(s);
   transition: all ease-out 0.3s;
 
   &::before,
@@ -44,21 +68,22 @@
     position: absolute;
     left: 0;
     width: 100%;
-    height: 1px;
+    height: setting.f-space-px(3xs);
     content: "";
-    background-color: var(--c-text-description);
+    background-color: currentcolor;
+    border-radius: setting.f-border-radius(s);
     transition: all ease-out 0.3s;
   }
 
   &::before {
-    top: -9px;
+    top: -11px;
   }
 
   &::after {
-    top: 9px;
+    top: 11px;
   }
 
-  .is-open & {
+  [aria-expanded="true"] & {
     background: transparent;
 
     &::before {
@@ -73,45 +98,34 @@
   }
 }
 
-.c-gnav {
-  @include tool.max-screen(setting.$underm) {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 9999;
-    display: none;
-    width: 100%;
-    padding-right: clamp(
-      clamp(setting.f-space-px(m), setting.breakpoints(overm), setting.f-space-px(xl)),
-      setting.breakpoints(overs),
-      clamp(setting.f-space-px(xl), setting.breakpoints(overm), setting.f-space-px(3xl))
-    );
-    padding-bottom: setting.f-space-px(l);
-    padding-left: clamp(
-      clamp(setting.f-space-px(m), setting.breakpoints(overm), setting.f-space-px(xl)),
-      setting.breakpoints(overs),
-      clamp(setting.f-space-px(xl), setting.breakpoints(overm), setting.f-space-px(3xl))
-    );
-    background: var(--c-bg-qua);
+.c-sp-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease-out;
 
-    &--is-open {
-      display: block;
-    }
+  &[aria-hidden="false"] {
+    right: 0;
+    pointer-events: auto;
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.3s ease-out;
 
-    &-item {
-      width: 100%;
+    body:has(&) {
+      overflow: hidden;
     }
   }
+}
 
-  @include tool.min-screen(setting.$breakm) {
-    margin-left: auto;
-  }
-
-  &-link {
-    color: currentcolor;
-
-    @include tool.max-screen(setting.$underm) {
-      display: block;
-    }
-  }
+.c-sp-nav {
+  box-sizing: border-box;
+  flex-grow: 1;
+  width: 100%;
 }

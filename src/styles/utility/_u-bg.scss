@@ -15,6 +15,11 @@
   background-color: var(--c-bg-tertiary);
 }
 
+.u-bg-invert {
+  color: var(--c-bg-primary);
+  background-color: var(--c-text-body);
+}
+
 .u-bg-qua {
   color: var(--c-text-body);
   background: var(--c-bg-qua);

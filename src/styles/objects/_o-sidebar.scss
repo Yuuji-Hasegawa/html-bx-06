@@ -9,6 +9,10 @@
 
   gap: var(--gutter);
 
+  &--no-gap {
+    --gutter: 0;
+  }
+
   &--gap-XL {
     --gutter: #{setting.f-space-px(xl)};
   }
@@ -17,8 +21,7 @@
     --gutter: 0;
   }
 
-  &--bio,
-  &--footer-logo {
+  &--bio {
     --gutter: #{setting.f-space-px(m)};
   }
 
@@ -58,14 +61,9 @@
     min-width: min(setting.breakpoints(underm), 100%);
   }
 
-  &__footLeft {
-    flex-basis: setting.breakpoints(unders);
-    min-width: fit-content;
-  }
-
-  &__footRight {
-    min-width: min(setting.breakpoints(unders), 100%);
-    margin-left: auto;
+  &__half-item {
+    width: 100%;
+    max-width: max(setting.breakpoints(underm), 50%);
   }
 
   &__grow {

@@ -107,13 +107,15 @@
   &--tbody {
     padding: setting.f-space-px(s) setting.f-space-px(m);
     border-color: var(--c-border-field);
+
+    .u-bg-primary & {
+      border-color: var(--c-text-on-fill);
+    }
   }
 
   &--thead {
     flex-basis: 260px;
     flex-grow: 1;
-    color: var(--c-text-description);
-    background: var(--c-bg-secondary);
     border-width: 1px clamp(0px, setting.breakpoints(underm), 1px) 0 1px;
 
     &:last-of-type {
@@ -130,6 +132,21 @@
     &:last-of-type {
       border-bottom-width: 1px;
     }
+  }
+
+  &--ghost-thead,
+  &--ghost-tbody {
+    padding-right: 0;
+    padding-left: 0;
+    border-color: currentcolor;
+    border-right: 0;
+    border-left: 0;
+  }
+
+  &--table-cell {
+    padding: setting.f-space-px(s) setting.f-space-px(m);
+    color: currentcolor;
+    background-color: transparent;
   }
 
   &--input {
@@ -207,8 +224,28 @@
   }
 
   &--menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(2 * setting.f-space-px(l));
+    height: calc(2 * setting.f-space-px(l));
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: calc(-1 * 2 * setting.f-space-px(l));
+    color: currentcolor;
     background: transparent;
-    border-color: var(--c-border-divider);
+    border-radius: setting.f-border-radius(s);
+    transition: all 0.25s ease;
+
+    &:hover,
+    &:focus {
+      color: var(--c-text-hover);
+      background-color: color-mix(in oklab, transparent, map.get(setting.$sys-light, onContainer) 15%);
+    }
+
+    &:focus {
+      outline-color: color-mix(in oklab, transparent, map.get(setting.$sys-light, onContainer) 15%);
+    }
   }
 
   &--round-label {

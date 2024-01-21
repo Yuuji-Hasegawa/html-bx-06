@@ -5,11 +5,29 @@
 
   --gutter: #{setting.f-space-px(l)};
 
+  &--no-gap {
+    --gutter: 0;
+  }
+
   &--gap-XL {
     --gutter: #{setting.f-space-px(xl)};
   }
 
   gap: var(--gutter);
+
+  &--half {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(
+        clamp(
+          clamp((100% - var(--gutter) * 2) / 3, setting.breakpoints(underm), (50% - var(--gutter) * 0.5)),
+          setting.breakpoints(underm),
+          clamp((50% - var(--gutter) * 0.5), setting.breakpoints(unders), 100%)
+        ),
+        1fr
+      )
+    );
+  }
 
   &--tri {
     grid-template-columns: repeat(

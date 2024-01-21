@@ -15,6 +15,10 @@
   flex-shrink: none;
 }
 
+.u-block-bottom {
+  margin-top: auto;
+}
+
 .u-pc-only {
   @include tool.max-screen(setting.$underm) {
     display: none;
@@ -29,4 +33,12 @@
 
 .u-full-width {
   width: 100%;
+}
+
+.u-height-full {
+  height: 100%;
+}
+
+.u-flex-center {
+  justify-content: center;
 }

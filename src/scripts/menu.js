@@ -1,42 +1,39 @@
 export const menu = () => {
-  let btn = document.querySelector(".o-box--menu-btn");
-  let gnav = document.querySelector("#gnav");
+  let btns = document.querySelectorAll(".o-box--menu-btn");
+  let btn = Array.prototype.slice.call(btns, 0);
+  let menu = document.querySelector("#spMenu");
   function init() {
-    if (window.matchMedia("(min-width: 961px)").matches) {
-      gnav.setAttribute("tabindex", "");
-      gnav.setAttribute("aria-hidden", "false");
-      btn.setAttribute("aria-label", "menu open");
-      btn.setAttribute("aria-expanded", "true");
-    } else {
-      gnav.setAttribute("tabindex", "-1");
-      gnav.setAttribute("aria-hidden", "true");
-      btn.setAttribute("aria-label", "menu open");
-      btn.setAttribute("aria-expanded", "false");
+    if (menu.getAttribute("tabindex") != "-1") {
+      for (var k = 0; k < btns.length; k++) {
+        btns[k].setAttribute("aria-expanded", "false");
+        btns[k].blur();
+      }
+      menu.setAttribute("tabindex", "-1");
+      menu.setAttribute("aria-hidden", "true");
     }
-    gnav.classList.remove("c-gnav--is-open");
-    btn.classList.remove("is-open");
-    btn.blur();
   }
   function check() {
-    if (gnav.getAttribute("tabindex") == "-1") {
-      btn.classList.add("is-open");
-      btn.setAttribute("aria-expanded", "true");
-      btn.setAttribute("aria-label", "menu close");
-      gnav.classList.add("c-gnav--is-open");
-      gnav.setAttribute("tabindex", "");
-      gnav.setAttribute("aria-hidden", "false");
+    if (menu.getAttribute("tabindex") == "-1") {
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].setAttribute("aria-expanded", "true");
+        btns[i].blur();
+      }
+      menu.setAttribute("tabindex", "");
+      menu.setAttribute("aria-hidden", "false");
     } else {
-      btn.classList.remove("is-open");
-      btn.setAttribute("aria-expanded", "false");
-      btn.setAttribute("aria-label", "menu open");
-      gnav.classList.remove("c-gnav--is-open");
-      gnav.setAttribute("tabindex", "-1");
-      gnav.setAttribute("aria-hidden", "true");
-      btn.blur();
+      for (var j = 0; j < btns.length; j++) {
+        btns[j].setAttribute("aria-expanded", "false");
+        btns[j].blur();
+      }
+      menu.setAttribute("tabindex", "-1");
+      menu.setAttribute("aria-hidden", "true");
     }
   }
-  btn.addEventListener("click", () => {
-    check();
+  btn.forEach((target) => {
+    console.log(target);
+    target.addEventListener("click", () => {
+      check();
+    });
   });
   window.addEventListener("load", () => {
     init();
