@@ -30,7 +30,6 @@ export const menu = () => {
     }
   }
   btn.forEach((target) => {
-    console.log(target);
     target.addEventListener("click", () => {
       check();
     });
