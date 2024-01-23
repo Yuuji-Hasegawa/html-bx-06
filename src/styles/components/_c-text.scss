@@ -193,8 +193,8 @@
 }
 
 .c-inner-box {
-  padding-right: clamp(setting.f-space-px(m), setting.breakpoints(overm), setting.f-space-px(l));
-  padding-left: clamp(setting.f-space-px(m), setting.breakpoints(overm), setting.f-space-px(l));
+  padding: clamp(0px, (setting.breakpoints(underm)), setting.f-space-px(m))
+    clamp(setting.f-space-px(m), (setting.breakpoints(overm)), setting.f-space-px(l));
 
   &--product {
     padding-top: clamp(0px, setting.breakpoints(underm), setting.f-space-px(2xl));
