@@ -75,7 +75,7 @@ devDependencies:
     version: 9.3.0(postcss@8.4.33)
   prettier:
     specifier: ^3.2.4
-    version: 3.2.4
+    version: 3.2.5
   rimraf:
     specifier: ^5.0.5
     version: 5.0.5
@@ -4523,8 +4523,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /prettier@3.2.4:
-    resolution: {integrity: sha512-FWu1oLHKCrtpO1ypU6J0SbK2d9Ckwysq6bHj/uaCP26DxrPpppCLQRGVuqAxSTvhF00AcvDRyYrLNW7ocBhFFQ==}
+  /prettier@3.2.5:
+    resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
